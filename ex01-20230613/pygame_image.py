@@ -9,17 +9,16 @@ def main():
     bg_img = pg.image.load("ex01-20230613/fig/pg_bg.jpg")
     koukaton_img = pg.image.load("ex01-20230613/fig/3.png")
     koukatonReverse_img = pg.transform.flip(koukaton_img, True, False)
-    koukatonReverseRotate10_img = pg.transform.rotate(koukatonReverse_img, 10)
+    koukatonReverseRotate10_img = [koukatonReverse_img, pg.transform.rotate(koukatonReverse_img, 10)]
+    
     tmr = 0
-
-    rensyu3 = list[koukatonReverse_img, koukatonReverseRotate10_img]
 
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
 
         screen.blit(bg_img, [0, 0])
-        screen.blit(koukatonReverse_img, [300, 200])
+        screen.blit(koukatonReverseRotate10_img[tmr % 2], [300, 200])
         pg.display.update()
         tmr += 1        
         clock.tick(10)
